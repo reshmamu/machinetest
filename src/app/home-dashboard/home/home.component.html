@@ -1,0 +1,43 @@
+<div class="cls1">
+  <form #simpleForm="ngForm" (ngSubmit)="getValues(simpleForm.value)">
+
+    <div>
+      <label for="name">FirstName</label>
+
+      <input type="text" id="name" name="name" class="form-control" required minlength="4" ngModel name="name"
+        #name="ngModel">
+
+
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+
+        <div *ngIf="name.errors?.required">
+          Name is required.
+        </div>
+        <div *ngIf="name.errors?.minlength">
+          Name must be at least 4 characters long.
+        </div>
+
+
+      </div>
+    </div>
+
+
+    <div>
+      <label for="email">Email</label>
+      <input type="email" required ngModel name="email" class="form-control">
+    </div>
+
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">Email is not valid</div>
+
+
+    <div>
+      <label for="number">Phone NO</label>
+      <input type="number" required ngModel name="number" class="form-control">
+    </div>
+    <div *ngIf="number.invalid && (number.dirty || number.touched)" class="alert"> 
+      Number is not valid
+    </div>
+    <button [disabled]=simpleForm.invalid> submit</button>
+
+  </form>
+</div>
